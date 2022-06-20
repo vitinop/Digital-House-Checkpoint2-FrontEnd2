@@ -34,10 +34,7 @@ form.addEventListener("submit", (event) => {
     }
   }
 
-
-
-  
-    // validação email
+  // validação email
   function checkEmail() {
     let mensagemError = [];
     // validação de email campo não vazio
@@ -51,54 +48,48 @@ form.addEventListener("submit", (event) => {
       event.preventDefault();
       mensagemError.push("Insira um endereço de email válido");
       span[2].innerText = mensagemError;
-    } 
-    else {
+    } else {
       span[2].innerText = null;
     }
 
     function isEmail(email) {
-        return /^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/.test(email)
-    } 
+      return /^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/.test(
+        email
+      );
+    }
   }
 
-
-// validação de senhas
-  function checkPassword(){
+  // validação de senhas
+  function checkPassword() {
     let mensagemError = [];
     if (password.value == null || password.value === "") {
       event.preventDefault();
       mensagemError.push("A senha é obrigatória");
       span[3].innerText = mensagemError;
-    }
-    
-    else {
+    } else {
       span[3].innerText = null;
     }
   }
 
-  
-// validação de  confirmação de senha 
+  // validação de  confirmação de senha
   function checkConfirmPassword() {
     let mensagemError = [];
-    if (confirmPassword.value == null ||confirmPassword.value === "") {
+    if (confirmPassword.value == null || confirmPassword.value === "") {
       event.preventDefault();
       mensagemError.push("A confirmação da senha é obrigatória");
       span[4].innerText = mensagemError;
-    }
-    else if (confirmPassword.value !== password.value ){
+    } else if (confirmPassword.value !== password.value) {
       event.preventDefault();
-      mensagemError.push("A senha de confirmação deve ser igual senha inserida");
+      mensagemError.push(
+        "A senha de confirmação deve ser igual senha inserida"
+      );
       span[4].innerText = mensagemError;
-    }
-    else {
+    } else {
       span[4].innerText = null;
     }
   }
-
-
-
- 
 });
+
 
 //     else if (password.value.length < 6) {
 //         e.preventDefault();
@@ -142,13 +133,5 @@ form.addEventListener("submit", (event) => {
 //         formItem[2].classList.remove('fail');
 //         error[2].innerText = null;
 //         formItem[2].classList.add('sucess');
-
-//     }
-
-//     if (password.value != confirmPassword.value) {
-//         e.preventDefault();
-//         mensagemError.push('As senhas devem ser iguais')
-//         error[3].innerText = mensagemError;
-//         formItem[3].classList.add('fail');
 
 //     }
