@@ -26,26 +26,51 @@
       <div class="form-header">
         <p>To-Do App</p>
       </div>
-
+      
+      <!-- Campo nome -->
       <label>
         Nome:
-        <input type="text">
+        <input id="cad_name" type="text">
+        <div class="erro">
+          <span class="errorMsgFormsContainer " id="errorMsg"></span>
+        </div>
       </label>
+
+      <!-- Campo sobrenome -->
       <label>
         Sobrenome:
-        <input type="text">
+        <input id="cad_secondname" type="text">
+        <div class="erro">
+          <span class="errorMsgFormsContainer " id="errorMsg"></span>
+        </div>
       </label>
+
+      <!-- Campo e-mail -->
       <label>
         Email:
-        <input type="email">
+        <input id="cad_email" type="email">
+        <div class="erro">
+          <span class="errorMsgFormsContainer " id="errorMsg"></span>
+        </div>
       </label>
+
+      <!-- Campo senha -->
       <label>
         Senha:
-        <input type="password">
+        <input id="cad_password" type="password">
+        <div class="erro">
+          <span class="errorMsgFormsContainer " id="errorMsg"></span>
+        </div>
       </label>
+
+
+      <!-- Campo confirmar senha -->
       <label>
         Repetir senha:
-        <input type="password">
+        <input id="cad_confirmPassword" type="password">
+        <div class="erro">
+          <span class="errorMsgFormsContainer " id="errorMsg"></span>
+        </div>
       </label>
 
       <button>Criar conta</button>
@@ -55,6 +80,8 @@
       <a href="index.html">Já possui conta? Acesse aqui</a>
     </div>
   </div>
+
+  <script src="./scripts/validacaoCadastro.js"></script>
 
 </body>
 
