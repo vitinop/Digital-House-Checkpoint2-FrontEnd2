@@ -11,7 +11,8 @@ form.addEventListener("submit", (event) => {
   checkName();
   checkSecondName();
   checkEmail();
-  // checkPassword();
+  checkPassword();
+  checkConfirmPassword();
 
   // validação de nome campo não vazio
   function checkName() {
@@ -36,7 +37,7 @@ form.addEventListener("submit", (event) => {
 
 
   
-    // validação emaill
+    // validação email
   function checkEmail() {
     let mensagemError = [];
     // validação de email campo não vazio
@@ -58,6 +59,40 @@ form.addEventListener("submit", (event) => {
     function isEmail(email) {
         return /^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/.test(email)
     } 
+  }
+
+
+// validação de senhas
+  function checkPassword(){
+    let mensagemError = [];
+    if (password.value == null || password.value === "") {
+      event.preventDefault();
+      mensagemError.push("A senha é obrigatória");
+      span[3].innerText = mensagemError;
+    }
+    
+    else {
+      span[3].innerText = null;
+    }
+  }
+
+  
+// validação de  confirmação de senha 
+  function checkConfirmPassword() {
+    let mensagemError = [];
+    if (confirmPassword.value == null ||confirmPassword.value === "") {
+      event.preventDefault();
+      mensagemError.push("A confirmação da senha é obrigatória");
+      span[4].innerText = mensagemError;
+    }
+    else if (confirmPassword.value !== password.value ){
+      event.preventDefault();
+      mensagemError.push("A senha de confirmação deve ser igual senha inserida");
+      span[4].innerText = mensagemError;
+    }
+    else {
+      span[4].innerText = null;
+    }
   }
 
 
