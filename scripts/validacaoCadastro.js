@@ -1,4 +1,4 @@
-const fields = document.querySelectorAll("[required]")
+const form = document. getElementsByClassName('form_cad');
 const nome = document.getElementById('cad_name');
 const sobrenome = document.getElementById('cad_secondname');
 const email = document.getElementById('cad_email');
@@ -7,35 +7,34 @@ const confirmPassword = document.getElementById('cad_confirmPassword');
 const errorMsg = document.querySelectorAll('.errorMsgFormsContainer');
 const span = document.querySelectorAll('span');
 
-for (field of fields){
-    field.addEvent
-}
 
 
-// form.addEventListener('submit', (e) => {
 
-//     checkName();
-//     checkPassword();
-//     checkEmail();
+form.addEventListener('submit', (e) => {
 
-//     function checkName() {
-//         let mensagemError = [];
-//         if (nome.value === '' || nome.value == null) {
-//             e.preventDefault();
-//             mensagemError.push('O nome é obrigatório')
-//             errorMsg[0].innerText = mensagemError;
+    checkName();
+    // checkPassword();
+    // checkEmail();
+
+    function checkName() {
+        let mensagemError = [];
+        if (nome.value === '' || nome.value == null) {
+            e.preventDefault();
+            mensagemError.push('O nome é obrigatório')
+            errorMsg[0].innerText = mensagemError;
          
-//             span[0].innerText = mensagemError;
-//         }
+            span[0].innerText = mensagemError;
+        }
 
-//         else {
+        else {
          
-//             error[0].innerText = null;
+            error[0].innerText = null;
         
 
-//         }
+        }
 
-//     }
+    }
+})
 
 
     // function checkPassword() {
@@ -150,6 +149,4 @@ for (field of fields){
 
 
     // }
-
-    
 
