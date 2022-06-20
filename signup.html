@@ -22,58 +22,45 @@
     <img src="./assets/pessoa-signup.png" alt="">
   </div>
   <div class="right">
-    <form>
+    <form class="form_cad" action="">
       <div class="form-header">
         <p>To-Do App</p>
       </div>
-      
+
       <!-- Campo nome -->
       <label>
         Nome:
-        <input id="cad_name" type="text">
-        <div class="erro">
-          <span class="errorMsgFormsContainer " id="errorMsg"></span>
-        </div>
+        <input id="cad_name" type="text" required>
       </label>
+      <span class="errorMsg" id="errorMsg"></span>
 
       <!-- Campo sobrenome -->
       <label>
         Sobrenome:
-        <input id="cad_secondname" type="text">
-        <div class="erro">
-          <span class="errorMsgFormsContainer " id="errorMsg"></span>
-        </div>
+        <input id="cad_secondname" type="text" required>
       </label>
 
       <!-- Campo e-mail -->
       <label>
         Email:
-        <input id="cad_email" type="email">
-        <div class="erro">
-          <span class="errorMsgFormsContainer " id="errorMsg"></span>
-        </div>
+        <input id="cad_email" type="email" required>
       </label>
+
 
       <!-- Campo senha -->
       <label>
         Senha:
-        <input id="cad_password" type="password">
-        <div class="erro">
-          <span class="errorMsgFormsContainer " id="errorMsg"></span>
-        </div>
+        <input id="cad_password" type="password" required>
       </label>
 
 
       <!-- Campo confirmar senha -->
       <label>
         Repetir senha:
-        <input id="cad_confirmPassword" type="password">
-        <div class="erro">
-          <span class="errorMsgFormsContainer " id="errorMsg"></span>
-        </div>
+        <input id="cad_confirmPassword" type="password" required>
       </label>
 
-      <button>Criar conta</button>
+      <button type="submit" class="submit" id="submit">Criar Conta</button>
 
     </form>
     <div class="ingressar">
