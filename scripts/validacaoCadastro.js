@@ -41,6 +41,12 @@ form.addEventListener("submit", (event) => {
       event.preventDefault();
       mensagemError.push("O sobrenome é obrigatório");
       span[1].innerText = mensagemError;
+      input[1].classList.add('input_fail');
+    }
+    else{
+      input[1].classList.add('input_ok');
+      mensagemError.push("");
+      span[1].innerText = mensagemError;
     }
   }
 
@@ -52,14 +58,20 @@ form.addEventListener("submit", (event) => {
       event.preventDefault();
       mensagemError.push("O email é obrigatório");
       span[2].innerText = mensagemError;
+      input[2].classList.add('input_fail');
     }
     // validação de email - campo é realmente um email
     else if (!isEmail(email.value)) {
       event.preventDefault();
       mensagemError.push("Insira um endereço de email válido");
       span[2].innerText = mensagemError;
+      input[2].classList.add('input_fail');
+
     } else {
       span[2].innerText = null;
+      input[2].classList.add('input_ok');
+      mensagemError.push("");
+      span[2].innerText = mensagemError;
     }
 
     function isEmail(email) {
@@ -76,8 +88,13 @@ form.addEventListener("submit", (event) => {
       event.preventDefault();
       mensagemError.push("A senha é obrigatória");
       span[3].innerText = mensagemError;
+      input[3].classList.add('input_fail');
+
     } else {
       span[3].innerText = null;
+      input[3].classList.add('input_ok');
+      mensagemError.push("");
+      span[3].innerText = mensagemError;
     }
   }
 
@@ -88,12 +105,19 @@ form.addEventListener("submit", (event) => {
       event.preventDefault();
       mensagemError.push("A confirmação da senha é obrigatória");
       span[4].innerText = mensagemError;
+      input[4].classList.add('input_fail');
+
     } else if (confirmPassword.value !== password.value) {
       event.preventDefault();
       mensagemError.push("A senha de confirmação deve ser igual senha inserida");
       span[4].innerText = mensagemError;
+      input[4].classList.add('input_fail');
+
     } else {
       span[4].innerText = null;
+      input[4].classList.add('input_ok');
+      mensagemError.push("");
+      span[4].innerText = mensagemError;
     }
   }
 });
