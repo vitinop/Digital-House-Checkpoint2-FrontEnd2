@@ -41,6 +41,12 @@ input {
   border: 1px solid var(--app-grey);
   border-radius: .2em;
 }
+.input_fail {
+  border: 1px solid #ff0000 !important;
+}
+.input_ok {
+  border: 1px solid #00ff95 !important;
+}
 
 input:focus {
   outline: none;

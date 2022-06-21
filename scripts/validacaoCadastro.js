@@ -6,6 +6,9 @@ const password = document.getElementById("cad_password");
 const confirmPassword = document.getElementById("cad_confirmPassword");
 const errorMsg = document.querySelectorAll(".errorMsg");
 const span = document.querySelectorAll("span");
+const input_fail = document.querySelectorAll(".input_fail");
+const input_ok = document.querySelectorAll(".input_ok");
+const input = document.querySelectorAll('input');
 
 form.addEventListener("submit", (event) => {
   checkName();
@@ -21,6 +24,13 @@ form.addEventListener("submit", (event) => {
       event.preventDefault();
       mensagemError.push("O nome é obrigatório");
       span[0].innerText = mensagemError;
+      input[0].classList.add('input_fail');
+    }
+    else {
+      input[0].classList.add('input_ok');
+      mensagemError.push("");
+      span[0].innerText = mensagemError;
+
     }
   }
 
@@ -80,9 +90,7 @@ form.addEventListener("submit", (event) => {
       span[4].innerText = mensagemError;
     } else if (confirmPassword.value !== password.value) {
       event.preventDefault();
-      mensagemError.push(
-        "A senha de confirmação deve ser igual senha inserida"
-      );
+      mensagemError.push("A senha de confirmação deve ser igual senha inserida");
       span[4].innerText = mensagemError;
     } else {
       span[4].innerText = null;
