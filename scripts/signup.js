@@ -9,6 +9,13 @@ const span = document.querySelectorAll("span");
 const input_fail = document.querySelectorAll(".input_fail");
 const input_ok = document.querySelectorAll(".input_ok");
 const input = document.querySelectorAll('input');
+const creationStatus = document.querySelector('#creationstatus');
+
+let checkNameStatus = false
+let checkSecondNameStatus = false
+let checkEmailStatus = false
+let checkPasswordStatus = false
+let checkConfirmPasswordStatus = false
 
 form.addEventListener("submit", (event) => {
   checkName();
@@ -24,13 +31,14 @@ form.addEventListener("submit", (event) => {
       event.preventDefault();
       mensagemError.push("O nome é obrigatório");
       span[0].innerText = mensagemError;
-      input[0].classList.add('input_fail');
+      input[0].classList.add('input_fail');      
     }
     else {
       input[0].classList.add('input_ok');
       mensagemError.push("");
       span[0].innerText = mensagemError;
-
+      checkNameStatus=true;
+     
     }
   }
 
@@ -47,6 +55,7 @@ form.addEventListener("submit", (event) => {
       input[1].classList.add('input_ok');
       mensagemError.push("");
       span[1].innerText = mensagemError;
+      checkSecondNameStatus = true;
     }
   }
 
@@ -56,7 +65,7 @@ form.addEventListener("submit", (event) => {
     // validação de email campo não vazio
     if (email.value.length == 0) {
       event.preventDefault();
-      mensagemError.push("O email é obrigatório");
+      mensagemError.push("O e-mail é obrigatório");
       span[2].innerText = mensagemError;
       input[2].classList.add('input_fail');
     }
@@ -66,12 +75,13 @@ form.addEventListener("submit", (event) => {
       mensagemError.push("Insira um endereço de email válido");
       span[2].innerText = mensagemError;
       input[2].classList.add('input_fail');
-
+      
     } else {
       span[2].innerText = null;
       input[2].classList.add('input_ok');
       mensagemError.push("");
       span[2].innerText = mensagemError;
+      checkEmailStatus = true;
     }
 
     function isEmail(email) {
@@ -95,6 +105,7 @@ form.addEventListener("submit", (event) => {
       input[3].classList.add('input_ok');
       mensagemError.push("");
       span[3].innerText = mensagemError;
+      checkPasswordStatus = true;
     }
   }
 
@@ -109,7 +120,7 @@ form.addEventListener("submit", (event) => {
 
     } else if (confirmPassword.value !== password.value) {
       event.preventDefault();
-      mensagemError.push("A senha de confirmação deve ser igual senha inserida");
+      mensagemError.push(`As senhas devem ser iguais`);
       span[4].innerText = mensagemError;
       input[4].classList.add('input_fail');
 
@@ -118,6 +129,7 @@ form.addEventListener("submit", (event) => {
       input[4].classList.add('input_ok');
       mensagemError.push("");
       span[4].innerText = mensagemError;
+      checkConfirmPasswordStatus = true;
     }
   }
 });
@@ -167,3 +179,37 @@ form.addEventListener("submit", (event) => {
 //         formItem[2].classList.add('sucess');
 
 //     }
+
+
+function signup(){
+  if(checkNameStatus && checkSecondNameStatus && checkEmailStatus && checkPasswordStatus && checkConfirmPasswordStatus){
+    fetch("https://ctd-todo-api.herokuapp.com/v1/users", {
+      method: "POST",
+      headers:{
+        "Accept": "*/*, application/json, text/plain",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "nome": nome.value,
+        "sobrenome":sobrenome.value,
+        "email": email.value,
+        "password": password.value
+
+      }),
+    })
+    .then((res) =>{
+      if(!res.ok){
+        throw Error(res.statusText)
+      }
+      else{
+        res.json()
+        creationStatus.innerHTML= '<h1>Usuário Criado com Sucesso</h1>'
+        setTimeout(() =>{
+          window.location.href = '/index.html'
+        }, 3000) 
+      }
+    })
+  }
+}
+
+signup()
