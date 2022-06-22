@@ -19,7 +19,7 @@
   </div>
 
   <div class="right">
-    <form>
+    <form class="form_cad" action="">
       <div class="form-header">
         <p>To-Do App</p>
       </div>
@@ -28,10 +28,13 @@
         Email:
         <input id="inputEmail" type="text">
       </label>
+      <span class="errorMsg" id="errorMsg"></span>
+
       <label>
         Senha:
         <input id="inputPassword" type="password">
       </label>
+      <span class="errorMsg" id="errorMsg"></span>
 
       <button type="submit">Acessar</button>
 
@@ -42,8 +45,8 @@
   </div>
 
 <!-- ---------------------- lógica aplicada no login ----------------------- -->
-<script src="/scripts/utils.js"></script>
-<script src="/scripts/index.js"></script>
+<!-- <script src="/scripts/utils.js"></script> -->
+<script src="./scripts/index.js"></script>
 </body>
 
 </html>
