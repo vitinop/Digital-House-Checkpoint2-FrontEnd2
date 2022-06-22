@@ -38,7 +38,6 @@ form.addEventListener("submit", (event) => {
       mensagemError.push("");
       span[0].innerText = mensagemError;
       checkNameStatus=true;
-     
     }
   }
 
@@ -182,7 +181,7 @@ form.addEventListener("submit", (event) => {
 
 
 function signup(){
-  if(checkNameStatus && checkSecondNameStatus && checkEmailStatus && checkPasswordStatus && checkConfirmPasswordStatus){
+  if(checkNameStatus == true && checkSecondNameStatus == true && checkEmailStatus == true && checkPasswordStatus == true && checkConfirmPasswordStatus == true ){
     fetch("https://ctd-todo-api.herokuapp.com/v1/users", {
       method: "POST",
       headers:{
@@ -203,6 +202,7 @@ function signup(){
       }
       else{
         res.json()
+        .then((data) => localStorage.setItem('jwt',data.jwt))
         creationStatus.innerHTML= '<h1>Usuário Criado com Sucesso</h1>'
         setTimeout(() =>{
           window.location.href = '/index.html'
