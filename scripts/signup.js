@@ -179,7 +179,7 @@ form.addEventListener("submit", (event) => {
 
 //     }
 
-
+//função de cadastro
 function signup(){
   if(checkNameStatus == true && checkSecondNameStatus == true && checkEmailStatus == true && checkPasswordStatus == true && checkConfirmPasswordStatus == true ){
     fetch("https://ctd-todo-api.herokuapp.com/v1/users", {
