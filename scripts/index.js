@@ -12,17 +12,29 @@ form.addEventListener("submit", (event) => {
 
     function checkLoginEmail() {
         let loginError = [];
-        if (inputEmail.value === "" || inputEmail.value == null) {
+        if (inputEmail.value.length == 0) {
             event.preventDefault();
             loginError.push("Coloque seu Email!");
             span[0].innerText = loginError;
             input[0].classList.add('input_fail');      
-        }else{
+        }
+        else if (!isEmail(email.value)) {
+            event.preventDefault();
+            loginError.push("Insira um endereço de email válido test");
+            span[0].innerText = loginError;
+            input[0].classList.add('input_fail');
+          }
+        else{
             event.preventDefault();
             loginError.push("");
             span[0].innerText = loginError;   
             input[0].classList.add('input_ok');   
         }
+        function isEmail(email) {
+            return /^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/.test(
+              email
+            );
+          }
     }
 
     function checkLoginPassword() {
