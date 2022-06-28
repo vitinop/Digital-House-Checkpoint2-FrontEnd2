@@ -179,7 +179,7 @@ form.addEventListener("submit", (event) => {
 
 //     }
 
-//função de cadastro
+
 function signup(){
   if(checkNameStatus == true && checkSecondNameStatus == true && checkEmailStatus == true && checkPasswordStatus == true && checkConfirmPasswordStatus == true ){
     fetch("https://ctd-todo-api.herokuapp.com/v1/users", {
@@ -189,13 +189,14 @@ function signup(){
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        "nome": nome.value,
-        "sobrenome":sobrenome.value,
+        "firstName": nome.value,
+        "lastName":sobrenome.value,
         "email": email.value,
         "password": password.value
 
       }),
     })
+    
     .then((res) =>{
       if(!res.ok){
         throw Error(res.statusText)
@@ -208,6 +209,15 @@ function signup(){
           window.location.href = '/index.html'
         }, 3000) 
       }
+    })
+    
+    .catch((data) => {
+      console.log(data)
+        if (data == 'Error: Bad Request') {
+            creationStatus.innerHTML = '<h1>Usuário já existe</h1>'
+            creationStatus.style.opacity = '1'
+            creationStatus.style.backgroundColor = 'red'
+        }
     })
   }
 }
