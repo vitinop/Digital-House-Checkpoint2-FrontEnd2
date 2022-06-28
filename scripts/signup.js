@@ -10,6 +10,8 @@ const input_fail = document.querySelectorAll(".input_fail");
 const input_ok = document.querySelectorAll(".input_ok");
 const input = document.querySelectorAll('input');
 const creationStatus = document.querySelector('#creationstatus');
+const user_sucesso = document.querySelectorAll('user_sucesso');
+const user_falha = document.querySelectorAll('user_falha');
 
 let checkNameStatus = false
 let checkSecondNameStatus = false
@@ -34,6 +36,7 @@ form.addEventListener("submit", (event) => {
       input[0].classList.add('input_fail');      
     }
     else {
+      event.preventDefault();
       input[0].classList.add('input_ok');
       mensagemError.push("");
       span[0].innerText = mensagemError;
@@ -51,6 +54,7 @@ form.addEventListener("submit", (event) => {
       input[1].classList.add('input_fail');
     }
     else{
+      event.preventDefault();
       input[1].classList.add('input_ok');
       mensagemError.push("");
       span[1].innerText = mensagemError;
@@ -76,6 +80,7 @@ form.addEventListener("submit", (event) => {
       input[2].classList.add('input_fail');
       
     } else {
+      event.preventDefault();
       span[2].innerText = null;
       input[2].classList.add('input_ok');
       mensagemError.push("");
@@ -100,6 +105,7 @@ form.addEventListener("submit", (event) => {
       input[3].classList.add('input_fail');
 
     } else {
+      event.preventDefault();
       span[3].innerText = null;
       input[3].classList.add('input_ok');
       mensagemError.push("");
@@ -124,6 +130,7 @@ form.addEventListener("submit", (event) => {
       input[4].classList.add('input_fail');
 
     } else {
+      event.preventDefault();
       span[4].innerText = null;
       input[4].classList.add('input_ok');
       mensagemError.push("");
@@ -131,95 +138,63 @@ form.addEventListener("submit", (event) => {
       checkConfirmPasswordStatus = true;
     }
   }
-});
 
-
-//     else if (password.value.length < 6) {
-//         e.preventDefault();
-//         mensagemError.push('A senha deve ter no mínimo 6 caracteres e no maximo 15 caracteres, sendo uma Letra maíuscula, um numéro e um caracter especial')
-//         error[2].innerText = mensagemError;
-//         formItem[2].classList.add('fail');
-//     }
-
-//     else if (password.value.length > 15) {
-//         e.preventDefault();
-//         mensagemError.push('A senha deve ter no mínimo 6 caracteres e no maximo 15 caracteres, sendo uma Letra maíuscula, um numéro e um caracter especial')
-//         error[2].innerText = mensagemError;
-//         formItem[2].classList.add('fail');
-//     }
-
-//     else if (!/[A-Z]/.test(password.value)) {
-//         e.preventDefault();
-//         mensagemError.push('A senha deve ter no mínimo 6 caracteres e no maximo 15 caracteres, sendo uma Letra maíuscula, um numéro e um caracter especial')
-//         error[2].innerText = mensagemError;
-//         formItem[2].classList.add('fail');
-
-//     }
-
-//     else if (!/[0-9]/.test(password.value)) {
-//         e.preventDefault();
-//         mensagemError.push('A senha deve ter no mínimo 6 caracteres e no maximo 15 caracteres, sendo uma Letra maíuscula, um numéro e um caracter especial')
-//         error[2].innerText = mensagemError;
-//         formItem[2].classList.add('fail');
-
-//     }
-
-//     else if (!/[^A-Za-z0-9]/.test(password.value)) {
-//         e.preventDefault();
-//         mensagemError.push('A senha deve ter no mínimo 6 caracteres e no maximo 15 caracteres, sendo uma Letra maíuscula, um numéro e um caracter especial')
-//         error[2].innerText = mensagemError;
-//         formItem[2].classList.add('fail');
-
-//     }
-
-//     else {
-//         formItem[2].classList.remove('fail');
-//         error[2].innerText = null;
-//         formItem[2].classList.add('sucess');
-
-//     }
-
-
-function signup(){
-  if(checkNameStatus == true && checkSecondNameStatus == true && checkEmailStatus == true && checkPasswordStatus == true && checkConfirmPasswordStatus == true ){
-    fetch("https://ctd-todo-api.herokuapp.com/v1/users", {
-      method: "POST",
-      headers:{
-        "Accept": "*/*, application/json, text/plain",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        "firstName": nome.value,
-        "lastName":sobrenome.value,
-        "email": email.value,
-        "password": password.value
-
-      }),
-    })
-    
-    .then((res) =>{
-      if(!res.ok){
-        throw Error(res.statusText)
-      }
-      else{
-        res.json()
-        .then((data) => localStorage.setItem('jwt',data.jwt))
-        creationStatus.innerHTML= '<h1>Usuário Criado com Sucesso</h1>'
-        setTimeout(() =>{
-          window.location.href = '/index.html'
-        }, 3000) 
-      }
-    })
-    
-    .catch((data) => {
-      console.log(data)
-        if (data == 'Error: Bad Request') {
-            creationStatus.innerHTML = '<h1>Usuário já existe</h1>'
-            creationStatus.style.opacity = '1'
-            creationStatus.style.backgroundColor = 'red'
+  function signup(){
+    let mensagemError = [];
+    if(checkNameStatus == true && checkSecondNameStatus == true && checkEmailStatus == true && checkPasswordStatus == true && checkConfirmPasswordStatus == true ){
+      fetch("https://ctd-todo-api.herokuapp.com/v1/users", {
+        method: "POST",
+        headers:{
+          "Accept": "*/*, application/json, text/plain",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          "firstName": nome.value,
+          "lastName":sobrenome.value,
+          "email": email.value,
+          "password": password.value
+        }),
+      })
+      
+      .then((res) =>{
+        console.log(res)
+        if(!res.ok){
+          throw Error(res.statusText)
         }
-    })
-  }
-}
+        else{
+          res.json()
+          .then((data) => localStorage.setItem('jwt',data.jwt))
+          setTimeout(() =>{
+          window.location.href = 'index.html'
+          mensagemError.push("Usuário Criado com Sucesso!");
+          creationStatus.innerText = mensagemError;
+          creationStatus.classList.add('user_sucesso');
+          }, 3000) 
+        }
+      })
+      
+      .catch((data) => {
+        console.log(data)
+          if (data == 'Error: Bad Request') {
+              mensagemError.push("Usuário já existe!");
+              creationStatus.innerText = mensagemError;
+              creationStatus.classList.add('user_falha');
+              input[0].classList.remove('input_ok');
+              input[1].classList.remove('input_ok');
+              input[2].classList.remove('input_ok');
+              input[3].classList.remove('input_ok');
+              input[4].classList.remove('input_ok');
+              input[0].classList.add('input_fail');
+              input[1].classList.add('input_fail');
+              input[2].classList.add('input_fail');
+              input[3].classList.add('input_fail');
+              input[4].classList.add('input_fail');
 
-signup()
+          }
+      })
+    }
+  }
+  
+  signup()
+
+});

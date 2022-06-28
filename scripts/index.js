@@ -5,6 +5,9 @@ const input_fail = document.querySelectorAll(".input_fail");
 const input_ok = document.querySelectorAll(".input_ok");
 const input = document.querySelectorAll('input');
 const span = document.querySelectorAll("span");
+const creationStatus = document.querySelector('#creationstatus');
+const user_sucesso = document.querySelectorAll('user_sucesso');
+const user_falha = document.querySelectorAll('user_falha');
 
 form.addEventListener("submit", (event) => {
     checkLoginEmail();
