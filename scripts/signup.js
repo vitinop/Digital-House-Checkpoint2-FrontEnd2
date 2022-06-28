@@ -40,7 +40,7 @@ form.addEventListener("submit", (event) => {
       input[0].classList.add('input_ok');
       mensagemError.push("");
       span[0].innerText = mensagemError;
-      checkNameStatus=true;
+      checkNameStatus = true;
     }
   }
 
@@ -168,6 +168,7 @@ form.addEventListener("submit", (event) => {
           window.location.href = 'index.html'
           mensagemError.push("Usuário Criado com Sucesso!");
           creationStatus.innerText = mensagemError;
+          creationStatus.classList.remove('user_falha');
           creationStatus.classList.add('user_sucesso');
           }, 3000) 
         }
@@ -189,7 +190,6 @@ form.addEventListener("submit", (event) => {
               input[2].classList.add('input_fail');
               input[3].classList.add('input_fail');
               input[4].classList.add('input_fail');
-
           }
       })
     }
