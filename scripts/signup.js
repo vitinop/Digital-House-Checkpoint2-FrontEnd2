@@ -160,13 +160,15 @@ form.addEventListener("submit", (event) => {
             throw Error(res.statusText);
           } else {
             res.json().then((data) => localStorage.setItem("jwt", data.jwt));
-            setTimeout(() => {
-              window.location.href = "index.html";
-              mensagemError.push("Usuário Criado com Sucesso!");
+            mensagemError.push("Usuário Criado com Sucesso!");
+              
               creationStatus.innerText = mensagemError;
               creationStatus.classList.remove("user_falha");
               creationStatus.classList.add("user_sucesso");
-            }, 3000);
+              
+            setTimeout(() => {
+              window.location.href = "tarefas.html";
+            },4000);
           }
         })
 
@@ -175,17 +177,10 @@ form.addEventListener("submit", (event) => {
           if (data == "Error: Bad Request") {
             mensagemError.push("Usuário já existe!");
             creationStatus.innerText = mensagemError;
-            creationStatus.classList.add("user_falha");
-            input[0].classList.remove("input_ok");
-            input[1].classList.remove("input_ok");
-            input[2].classList.remove("input_ok");
-            input[3].classList.remove("input_ok");
-            input[4].classList.remove("input_ok");
-            input[0].classList.add("input_fail");
-            input[1].classList.add("input_fail");
+            creationStatus.classList.add("user_falha");           
+            input[2].classList.remove("input_ok");       
             input[2].classList.add("input_fail");
-            input[3].classList.add("input_fail");
-            input[4].classList.add("input_fail");
+            
           }
         });
     }

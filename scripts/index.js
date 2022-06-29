@@ -77,7 +77,9 @@ form.addEventListener("submit", (event) => {
                     res.json().then(data => {
                         if (data.jwt != undefined) {
                             localStorage.setItem("Token", JSON.stringify(data.jwt));
-                            window.location.href = "https://ctd-todo-api.herokuapp.com/tarefas.html";
+                            setTimeout(() => {
+                                window.location.href = "tarefas.html";
+                              },4000);
                         } else {
                             console.log({ "Error": "Não foi possível gerar o Token" });
                         }
@@ -93,6 +95,7 @@ form.addEventListener("submit", (event) => {
             });
 
     };
+    fetchAPI();
 })
 
 
