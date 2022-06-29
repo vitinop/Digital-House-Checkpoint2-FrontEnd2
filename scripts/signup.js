@@ -7,16 +7,16 @@ const confirmPassword = document.getElementById("cad_confirmPassword");
 const span = document.querySelectorAll("span");
 const input_fail = document.querySelectorAll(".input_fail");
 const input_ok = document.querySelectorAll(".input_ok");
-const input = document.querySelectorAll('input');
-const creationStatus = document.querySelector('#creationstatus');
-const user_sucesso = document.querySelectorAll('user_sucesso');
-const user_falha = document.querySelectorAll('user_falha');
+const input = document.querySelectorAll("input");
+const creationStatus = document.querySelector("#creationstatus");
+const user_sucesso = document.querySelectorAll("user_sucesso");
+const user_falha = document.querySelectorAll("user_falha");
 
-let checkNameStatus = false
-let checkSecondNameStatus = false
-let checkEmailStatus = false
-let checkPasswordStatus = false
-let checkConfirmPasswordStatus = false
+let checkNameStatus = false;
+let checkSecondNameStatus = false;
+let checkEmailStatus = false;
+let checkPasswordStatus = false;
+let checkConfirmPasswordStatus = false;
 
 form.addEventListener("submit", (event) => {
   checkName();
@@ -32,11 +32,10 @@ form.addEventListener("submit", (event) => {
       event.preventDefault();
       mensagemError.push("O nome é obrigatório");
       span[0].innerText = mensagemError;
-      input[0].classList.add('input_fail');      
-    }
-    else {
+      input[0].classList.add("input_fail");
+    } else {
       event.preventDefault();
-      input[0].classList.add('input_ok');
+      input[0].classList.add("input_ok");
       mensagemError.push("");
       span[0].innerText = mensagemError;
       checkNameStatus = true;
@@ -50,11 +49,10 @@ form.addEventListener("submit", (event) => {
       event.preventDefault();
       mensagemError.push("O sobrenome é obrigatório");
       span[1].innerText = mensagemError;
-      input[1].classList.add('input_fail');
-    }
-    else{
+      input[1].classList.add("input_fail");
+    } else {
       event.preventDefault();
-      input[1].classList.add('input_ok');
+      input[1].classList.add("input_ok");
       mensagemError.push("");
       span[1].innerText = mensagemError;
       checkSecondNameStatus = true;
@@ -69,19 +67,18 @@ form.addEventListener("submit", (event) => {
       event.preventDefault();
       mensagemError.push("O e-mail é obrigatório");
       span[2].innerText = mensagemError;
-      input[2].classList.add('input_fail');
+      input[2].classList.add("input_fail");
     }
     // validação de email - campo é realmente um email
     else if (!isEmail(email.value)) {
       event.preventDefault();
       mensagemError.push("Insira um endereço de email válido");
       span[2].innerText = mensagemError;
-      input[2].classList.add('input_fail');
-      
+      input[2].classList.add("input_fail");
     } else {
       event.preventDefault();
       span[2].innerText = null;
-      input[2].classList.add('input_ok');
+      input[2].classList.add("input_ok");
       mensagemError.push("");
       span[2].innerText = mensagemError;
       checkEmailStatus = true;
@@ -101,12 +98,11 @@ form.addEventListener("submit", (event) => {
       event.preventDefault();
       mensagemError.push("A senha é obrigatória");
       span[3].innerText = mensagemError;
-      input[3].classList.add('input_fail');
-
+      input[3].classList.add("input_fail");
     } else {
       event.preventDefault();
       span[3].innerText = null;
-      input[3].classList.add('input_ok');
+      input[3].classList.add("input_ok");
       mensagemError.push("");
       span[3].innerText = mensagemError;
       checkPasswordStatus = true;
@@ -120,80 +116,80 @@ form.addEventListener("submit", (event) => {
       event.preventDefault();
       mensagemError.push("A confirmação da senha é obrigatória");
       span[4].innerText = mensagemError;
-      input[4].classList.add('input_fail');
-
+      input[4].classList.add("input_fail");
     } else if (confirmPassword.value !== password.value) {
       event.preventDefault();
       mensagemError.push(`As senhas devem ser iguais`);
       span[4].innerText = mensagemError;
-      input[4].classList.add('input_fail');
-
+      input[4].classList.add("input_fail");
     } else {
       event.preventDefault();
       span[4].innerText = null;
-      input[4].classList.add('input_ok');
+      input[4].classList.add("input_ok");
       mensagemError.push("");
       span[4].innerText = mensagemError;
       checkConfirmPasswordStatus = true;
     }
   }
 
-  function signup(){
+  function signup() {
     let mensagemError = [];
-    if(checkNameStatus == true && checkSecondNameStatus == true && checkEmailStatus == true && checkPasswordStatus == true && checkConfirmPasswordStatus == true ){
+    if (
+      checkNameStatus == true &&
+      checkSecondNameStatus == true &&
+      checkEmailStatus == true &&
+      checkPasswordStatus == true &&
+      checkConfirmPasswordStatus == true
+    ) {
       fetch("https://ctd-todo-api.herokuapp.com/v1/users", {
         method: "POST",
-        headers:{
-          "Accept": "*/*, application/json, text/plain",
-          "Content-Type": "application/json"
+        headers: {
+          Accept: "*/*, application/json, text/plain",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          "firstName": nome.value,
-          "lastName":sobrenome.value,
-          "email": email.value,
-          "password": password.value
+          firstName: nome.value,
+          lastName: sobrenome.value,
+          email: email.value,
+          password: password.value,
         }),
       })
-      
-      .then((res) =>{
-        console.log(res)
-        if(!res.ok){
-          throw Error(res.statusText)
-        }
-        else{
-          res.json()
-          .then((data) => localStorage.setItem('jwt',data.jwt))
-          setTimeout(() =>{
-          window.location.href = 'index.html'
-          mensagemError.push("Usuário Criado com Sucesso!");
-          creationStatus.innerText = mensagemError;
-          creationStatus.classList.remove('user_falha');
-          creationStatus.classList.add('user_sucesso');
-          }, 3000) 
-        }
-      })
-      
-      .catch((data) => {
-        console.log(data)
-          if (data == 'Error: Bad Request') {
-              mensagemError.push("Usuário já existe!");
+        .then((res) => {
+          console.log(res);
+          if (!res.ok) {
+            throw Error(res.statusText);
+          } else {
+            res.json().then((data) => localStorage.setItem("jwt", data.jwt));
+            setTimeout(() => {
+              window.location.href = "index.html";
+              mensagemError.push("Usuário Criado com Sucesso!");
               creationStatus.innerText = mensagemError;
-              creationStatus.classList.add('user_falha');
-              input[0].classList.remove('input_ok');
-              input[1].classList.remove('input_ok');
-              input[2].classList.remove('input_ok');
-              input[3].classList.remove('input_ok');
-              input[4].classList.remove('input_ok');
-              input[0].classList.add('input_fail');
-              input[1].classList.add('input_fail');
-              input[2].classList.add('input_fail');
-              input[3].classList.add('input_fail');
-              input[4].classList.add('input_fail');
+              creationStatus.classList.remove("user_falha");
+              creationStatus.classList.add("user_sucesso");
+            }, 3000);
           }
-      })
+        })
+
+        .catch((data) => {
+          console.log(data);
+          if (data == "Error: Bad Request") {
+            mensagemError.push("Usuário já existe!");
+            creationStatus.innerText = mensagemError;
+            creationStatus.classList.add("user_falha");
+            input[0].classList.remove("input_ok");
+            input[1].classList.remove("input_ok");
+            input[2].classList.remove("input_ok");
+            input[3].classList.remove("input_ok");
+            input[4].classList.remove("input_ok");
+            input[0].classList.add("input_fail");
+            input[1].classList.add("input_fail");
+            input[2].classList.add("input_fail");
+            input[3].classList.add("input_fail");
+            input[4].classList.add("input_fail");
+          }
+        });
     }
   }
-  
-  signup()
 
+  signup();
 });
