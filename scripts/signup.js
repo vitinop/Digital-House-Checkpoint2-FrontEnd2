@@ -4,7 +4,6 @@ const sobrenome = document.getElementById("cad_secondname");
 const email = document.getElementById("cad_email");
 const password = document.getElementById("cad_password");
 const confirmPassword = document.getElementById("cad_confirmPassword");
-const errorMsg = document.querySelectorAll(".errorMsg");
 const span = document.querySelectorAll("span");
 const input_fail = document.querySelectorAll(".input_fail");
 const input_ok = document.querySelectorAll(".input_ok");
