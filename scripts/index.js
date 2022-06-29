@@ -77,21 +77,22 @@ form.addEventListener("submit", (event) => {
                     res.json().then(data => {
                         if (data.jwt != undefined) {
                             localStorage.setItem("Token", JSON.stringify(data.jwt));
-                            window.location.href = "http://127.0.0.1:5500/tarefas.html";
+                            window.location.href = "https://ctd-todo-api.herokuapp.com/tarefas.html";
                         } else {
                             console.log({ "Error": "Não foi possível gerar o Token" });
                         }
                     });
                 } else if (res.status == 400) {
-                    console.log({ "Error": "Contraseña incorrecta" });
+                    console.log({ "Error": "Usuário ou senha incorretos" });
 
                 } else if (res.status == 404) {
-                    console.log({ "Error": "El usuario no existe" });
+                    console.log({ "Error": "Usuário ou senha incorretos" });
                 } else {
-                    console.log({ "Error": "Error del servidor" });
+                    console.log({ "Error": "Erro de conexao do servidor" });
                 }
             });
 
-    });
+    };
+})
 
 
