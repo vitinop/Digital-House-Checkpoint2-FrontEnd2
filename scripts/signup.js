@@ -161,14 +161,13 @@ form.addEventListener("submit", (event) => {
           } else {
             res.json().then((data) => localStorage.setItem("jwt", data.jwt));
             mensagemError.push("Usuário Criado com Sucesso!");
-              
               creationStatus.innerText = mensagemError;
               creationStatus.classList.remove("user_falha");
               creationStatus.classList.add("user_sucesso");
               
             setTimeout(() => {
               window.location.href = "tarefas.html";
-            },4000);
+            },3000);
           }
         })
 
