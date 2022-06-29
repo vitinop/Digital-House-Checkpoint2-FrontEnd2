@@ -104,3 +104,17 @@ button {
   font-size: 12px;
 
 }
+.user_sucesso{
+  font-size: 18px;
+  color: #00ff95;
+}
+.user_falha{
+  font-size: 18px;
+  color: #ff1100;
+}
+
+.creationstatus{
+  width: 100%;
+  height: 1em;
+  position: relative;
+}
