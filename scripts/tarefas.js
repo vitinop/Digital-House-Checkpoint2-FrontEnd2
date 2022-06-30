@@ -14,13 +14,13 @@ btnCriar.addEventListener("click", e => {
     postTasks();
 });
 
-btnSair.addEventListener("click", e =>{
+btnSair.addEventListener("click", e => {
     localStorage.removeItem("Token");
     window.location.href = "index.html";
 });
 
 let gerarListaTarefas = (params) => {
-    tarefasPendentes.innerHTML+=`
+    tarefasPendentes.innerHTML += `
     <li class="tarefa">
         <div id="btnFeito" class="not-done"></div>
         <div class="descricao">
@@ -37,14 +37,14 @@ let gerarListaTarefas = (params) => {
 // ______ codigos API ________
 const getTasksAll = () => {
     let getToken = JSON.parse(localStorage.getItem("Token"));
-    fetch("https://ctd-todo-api.herokuapp.com/v1/tasks",{
+    fetch("https://ctd-todo-api.herokuapp.com/v1/tasks", {
         method: 'GET',
-        headers:{
+        headers: {
             'Accept': '/ , application/json',
             'Content-Type': 'application/json',
             'authorization': `${getToken}`
         },
-        
+
     }).then(res => {
         if (res.status == 200) {
             res.json().then(data => {
@@ -59,7 +59,7 @@ const getTasksAll = () => {
                     });
                 });
                 // adicionar funcionalidade ao botão editar e conclusao da tarefa
-                pen = document.querySelectorAll("#editar"); 
+                pen = document.querySelectorAll("#editar");
                 pen.forEach((ele, i) => {
                     ele.addEventListener("click", () => {
                         editTasks(data[i].id);
@@ -68,11 +68,11 @@ const getTasksAll = () => {
                 check = document.querySelectorAll("#btnFeito");
                 let nomeTarefa = document.querySelectorAll(".nomeTarefa");
                 check.forEach((ele) => {
-                    ele.addEventListener("click", () => {  
-                        nomeTarefa.forEach((ju)=>{
-                            ju.classList.toggle("feito"); 
-                         }) 
-                       
+                    ele.addEventListener("click", () => {
+                        nomeTarefa.forEach((ju) => {
+                            ju.classList.toggle("feito");
+                        })
+
                     });
                 });
 
@@ -85,9 +85,9 @@ getTasksAll();
 
 const getTasksOne = () => {
     let getToken = JSON.parse(localStorage.getItem("Token"));
-    fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${getIdTasks}`,{
+    fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${getIdTasks}`, {
         method: 'GET',
-        headers:{
+        headers: {
             'Accept': '/ , application/json',
             'Content-Type': 'application/json',
             'authorization': `${getToken}`
@@ -104,9 +104,9 @@ const getTasksOne = () => {
 
 const postTasks = () => {
     let getToken = JSON.parse(localStorage.getItem("Token"));
-    fetch("https://ctd-todo-api.herokuapp.com/v1/tasks",{
+    fetch("https://ctd-todo-api.herokuapp.com/v1/tasks", {
         method: 'POST',
-        headers:{
+        headers: {
             'Accept': '/ , application/json',
             'Content-Type': 'application/json',
             'authorization': `${getToken}`
@@ -126,9 +126,9 @@ const postTasks = () => {
 
 const delTasks = (params) => {
     let getToken = JSON.parse(localStorage.getItem("Token"));
-    fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${params}`,{
+    fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${params}`, {
         method: 'DELETE',
-        headers:{
+        headers: {
             'Accept': '/ , application/json',
             'Content-Type': 'application/json',
             'authorization': `${getToken}`
@@ -144,15 +144,15 @@ const delTasks = (params) => {
 
 const editTasks = params => {
     let getToken = JSON.parse(localStorage.getItem("Token"));
-    fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${params}`,{
+    fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${params}`, {
         method: 'PUT',
-        headers:{
+        headers: {
             'Accept': '/ , application/json',
             'Content-Type': 'application/json',
             'authorization': `${getToken}`
         },
         body: JSON.stringify({
-            "description":`${inputTarefa.value}` ,
+            "description": `${inputTarefa.value}`,
             "completed": false
         })
     }).then(res => {
