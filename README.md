@@ -1,7 +1,7 @@
 <p align="center"><img height="100em" src="https://assets-global.website-files.com/5de98c06bb83ab1e27fc1c95/61c22cc7406e8924694eefe6_60a1bee6049365927b1f1f2a_Digital-House-logo.png" /></p>
 <h1 align="center">Digital House- Módulo II</h1>
 
-<h3 align="center">Checkpoint 1 - FrontEndII</h2>
+<h3 align="center">Checkpoint 2 - FrontEndII</h2>
 
 <p align="justify">&emsp;Esta atividade tem como objetivo servir como primeiro instrumento avaliativo da disciplina. Se atente às instruções e boa avaliação. O entregável será uma página em HTML5, CSS3 e Javascript seguindo os conteúdos ministrados até aqui.
  O checkpoint pode ser realizado em grupos de até 3 membros.</p>
@@ -34,11 +34,11 @@
 ---  
  
 
-<h3 align="center">Imagens de amostra do projeto finalizado</h2>
+<h3 align="center">Imagens de amostra do projeto finalizado</h3>
 
 Acesse o prototipo do projeto através do link :
     
-https://digital-house-checkpoint1-front-end2.vercel.app/
+https://digital-house-checkpoint2-front-end2.vercel.app/
 
 
 
