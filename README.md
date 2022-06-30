@@ -45,7 +45,7 @@ https://digital-house-checkpoint1-front-end2.vercel.app/
 
 <div align="start"> 
 <h2> :handshake: Integrantes</h2>
-  <li><a target="_blank" href="https://github.com/fehbr800" title="Matheus Emanuel Github">Matheus Emanuel</a></li>
+  <li><a target="_blank" href="https://github.com/fehbr800" title="Matheus Emanuel Github">Matheus Emanoel</a></li>
   <li><a target="_blank" href="https://github.com/vitinop" title="Victor Luz Github">Victor Luz</a></li>
   <li><a target="_blank" href="https://github.com/ViniciusFelce" title="Vinicius Felce Github">Vinicius Felce</a></li>
   <li><a target="_blank" href="https://github.com/rllimaferreira" title="Rodrigo Ferreira">Rodrigo Ferreira</a></li>
