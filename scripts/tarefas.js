@@ -1,141 +1,165 @@
-const deslogar = document.getElementById('closeApp');
-const form = document.getElementById('nova-tarefa');
-const inputTarefa = document.getElementById('novaTarefa');
-let isTokenNull = localStorage.getItem('Token') == null;
-let isTokenEmpty = localStorage.getItem('Token') == '';
-let isTokenValid =  isTokenNull || isTokenEmpty;
-const urlAPI = "http://ctd-todo-api.herokuapp.com/v1"
-let token = localStorage.getItem('Token');
+const inputTarefa = document.querySelector("#inputTarefa");
+const btnCriar = document.querySelector("#btnCriar");
+const btnSair = document.querySelector("#closeApp");
+let tarefasPendentes = document.querySelector("#tarefasPendentes");
+let time = new Date().toLocaleString();
 
-// usuário
-function getUser() {
-    fetch (urlAPI + '/users/getMe', {
+
+
+let trash;
+let pen;
+let check;
+
+// ____________________ Criação de Tarefa ____________________
+btnCriar.addEventListener("click", e => {
+    e.preventDefault();
+    postTasks();
+});
+
+btnSair.addEventListener("click", e =>{
+    localStorage.removeItem("Token");
+    window.location.href = "index.html";
+});
+
+let gerarListaTarefas = (params) => {
+    tarefasPendentes.innerHTML+=`
+    <li class="tarefa">
+        <div id="btnFeito" class="not-done"></div>
+        <div class="descricao">
+            <p class="nomeTarefa">${params}</p>
+            <p class="timestamp">Criada em: ${time}</p>
+        </div>
+        <div class="iconsTask">
+        <i class="fa-solid fa-trash-can" id="trash"></i>
+        <i class="fa-regular fa-pen-to-square" id="editar"></i>
+        </div>
+    </li>`;
+};
+
+// __________________ codigos API ____________________
+const getTasksAll = () => {
+    let getToken = JSON.parse(localStorage.getItem("Token"));
+    fetch("https://ctd-todo-api.herokuapp.com/v1/tasks",{
         method: 'GET',
-        headers: {
-            'Accept': '*/* , application/json, text/plain',
-            'Content-Type': 'application/json', 
-            'Authorization' : 'Bearer ' + token //saber como deve ser enviado o token para o authorization
+        headers:{
+            'Accept': '*/* , application/json',
+            'Content-Type': 'application/json',
+            'authorization': `${getToken}`
         },
-    })
-    .then(response => response.json())
-    .then(user => {
-        console.log(user);
-        let userInterface = document.getElementById('user-name');
-        const firstName = document.createTextNode('user.firstName');
-        userInterface.appendChild(firstName);
-    })
-}
+        
+    }).then(res => {
+        if (res.status == 200) {
+            res.json().then(data => {
+                console.log(data);
+                for (let i = 0; i < data.length; i++) {
+                    gerarListaTarefas(data[i].description);
+                }
+                trash = document.querySelectorAll("#trash");
+                trash.forEach((ele, i) => {
+                    ele.addEventListener("click", () => {
+                        delTasks(data[i].id);
+                    });
+                });
+                pen = document.querySelectorAll("#editar");
+                pen.forEach((ele, i) => {
+                    ele.addEventListener("click", () => {
+                        putTasks(data[i].id);
+                    });
+                });
+                check = document.querySelectorAll("#btnFeito");
+                let nomeTarefa = document.querySelectorAll(".nomeTarefa");
+                check.forEach((ele) => {
+                    ele.addEventListener("click", () => {  
+                        nomeTarefa.forEach((ju)=>{
+                            ju.classList.toggle("feito"); 
+                         }) 
+                       
+                    });
+                });
 
-getUser();
-
-if (isTokenValid){
-    alert('Entre com a sua conta de usuário, caso não tenha cadastre-se!');
-    window.location.href = 'index.html'
-    // incompatível com o FireFox!!!
-}
-
-//Sessão Finalizada
-deslogar.addEventListener('click', () => {
-    localStorage.removeItem('jwt');
-    alert('Finalizar Sessão?')
-    setTimeout(() => {
-        window.localStorage.href = 'index.html'
-    },3000)
-})
-
-<<<<<<< HEAD
-//addTarefa( sem resultado )
-form.addEventListener('submit', (e) => {
-    if(inputTarefa.nodeValue.length != 0 ){
-        function addTarefa() {
-            fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', {
-                method: 'POST',
-                headers:{
-                    Accept: "*/*, application/json, text/plain",
-                    "Content-Type": "application/json",
-                    "authorization": `${inputTarefa.getItem('jwt')}`
-                },
-                body: JSON.stringify({
-                    "description": `${inputTarefa.velue}`,
-                    "completed": false
-                })
-            })
-            .then(res => ReadableStream.json())
-            .then(data => {
-                pendentes.innerHTML +=`
-                <li class="tarefa">
-                <div class="not-done"></div>
-                <div class="descricao">
-                <p class="nome">${data.description}</p>
-                <p class="timestamp">${data.createdAt}</p>
-                </div>
-                </li>
-                `
-                console.log('test1')
-            })
+            });
         }
-    } else if (inputTarefa !== '' && inputTarefa != null){
-        alert('Tarefa Invalida!')
-        console.log('test2')
-    }
+    });
+};
 
-})
-addTarefa();
-e.preventDefault();
-=======
+getTasksAll();
 
-// função para adicionar as tarefas
-function getTasks() {
-    fetch (urlAPI + '/tasks/getTasks', {
+const getTasksOne = () => {
+    let getToken = JSON.parse(localStorage.getItem("Token"));
+    fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${getIdTasks}`,{
         method: 'GET',
-        headers: {
-            'Accept': '*/* , application/json, text/plain',
-            'Content-Type': 'application/json', 
-            'Authorization' : 'Bearer ' + token //saber como deve ser enviado o token para o authorization
+        headers:{
+            'Accept': '*/* , application/json',
+            'Content-Type': 'application/json',
+            'authorization': `${getToken}`
         }
-    })
-    .then(response => response.json())
-    .then(tasks => {
-        console.log(tasks);
-        // criar um loop que desenha as tarefas
-        let taskInterface = document.querySelector('.tarefas-pendentes > div') 
-        tasks.map(task => {
-            if (task == null || task == ""){
-                taskInterface.innerHTML += "Adicionar tarefa"
+    }).then(res => {
+        if (res.status == 200) {
+            res.json().then(data => {
+                console.log(data);
+            })
+        }
+    });
+};
 
-            } else {
-                taskInterface.innerHTML += `
-                    <li class="tarefa">
-                        <div class="not-done"></div>
-                        <div class="descricao">
-                            <p class="nome">{task.description}</p>
-                            <p class="timestamp">{task.createdAt}</p>
-                        </div>
-                    </li>
-                ` 
-            }
 
-        })
-    })
-}
-
-function createTask() { //alterar o nome para as tarefas
-    fetch("https://ctd-todo-api.herokuapp.com/v1/users", {
-        method: "POST",
-        headers: {
-          Accept: "*/*, application/json, text/plain",
-          "Content-Type": "application/json",
+const postTasks = () => {
+    let getToken = JSON.parse(localStorage.getItem("Token"));
+    fetch("https://ctd-todo-api.herokuapp.com/v1/tasks",{
+        method: 'POST',
+        headers:{
+            'Accept': '*/* , application/json',
+            'Content-Type': 'application/json',
+            'authorization': `${getToken}`
         },
         body: JSON.stringify({
-          firstName: nome.value,
-          lastName: sobrenome.value,
-          email: email.value,
-          password: password.value,
-        }),
-      })
-}
+            "description": `${inputTarefa.value}`,
+            "completed": false
+        })
+    }).then(res => {
+        console.log(res.status);
+        if (res.status == 201) {
+            getTasksAll();
+            window.location.href = "tarefas.html";
+        }
+    });
+};
 
+const delTasks = (params) => {
+    let getToken = JSON.parse(localStorage.getItem("Token"));
+    fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${params}`,{
+        method: 'DELETE',
+        headers:{
+            'Accept': '*/* , application/json',
+            'Content-Type': 'application/json',
+            'authorization': `${getToken}`
+        }
+    }).then(res => {
+        console.log(res.status);
+        if (res.status == 200) {
+            getTasksAll();
+            window.location.href = "tarefas.html";
+        }
+    });
+};
 
-
-// header authorization
->>>>>>> fe18ed615a929bf6094c466da9c721ec098e5c36
+const putTasks = params => {
+    let getToken = JSON.parse(localStorage.getItem("Token"));
+    fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${params}`,{
+        method: 'PUT',
+        headers:{
+            'Accept': '*/* , application/json',
+            'Content-Type': 'application/json',
+            'authorization': `${getToken}`
+        },
+        body: JSON.stringify({
+            "description":`${inputTarefa.value}` ,
+            "completed": false
+        })
+    }).then(res => {
+        if (res.status == 200) {
+            getTasksAll();
+            window.location.href = "tarefas.html";
+        }
+    });
+};
