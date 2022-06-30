@@ -48,6 +48,6 @@ https://digital-house-checkpoint1-front-end2.vercel.app/
   <li><a target="_blank" href="https://github.com/fehbr800" title="Matheus Emanuel Github">Matheus Emanuel</a></li>
   <li><a target="_blank" href="https://github.com/vitinop" title="Victor Luz Github">Victor Luz</a></li>
   <li><a target="_blank" href="https://github.com/ViniciusFelce" title="Vinicius Felce Github">Vinicius Felce</a></li>
-  <li><a target="_blank" https://github.com/rllimaferreira" title="Rodrigo Ferreira">Rodrigo Ferreira</a></li>
+  <li><a target="_blank" href="https://github.com/rllimaferreira" title="Rodrigo Ferreira">Rodrigo Ferreira</a></li>
   <li><a target="_blank" href="https://github.com/mlugard" title="Marcelo Cabral">Marcelo Cabral</a></li>
  </div>
