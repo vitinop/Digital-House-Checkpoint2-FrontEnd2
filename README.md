@@ -1,34 +1,28 @@
-<p align="center"><img height="100em" src="https://assets-global.website-files.com/5de98c06bb83ab1e27fc1c95/61c22cc7406e8924694eefe6_60a1bee6049365927b1f1f2a_Digital-House-logo.png" /></p>
-<h1 align="center">Digital House- Módulo II</h1>
+<p align="center"><img height="250em" src="https://media3.giphy.com/media/qUt4xeREPBTEdteWKw/giphy.gif" /></p>
+<h1 align="center">Digital House - Módulo II</h1>
 
-<h3 align="center">Checkpoint 1 - FrontEndII</h2>
+<h3 align="center">Checkpoint 2 - FrontEnd II</h2>
 
-<p align="justify">&emsp;Esta atividade tem como objetivo servir como primeiro instrumento avaliativo da disciplina. Se atente às instruções e boa avaliação. O entregável será uma página em HTML5, CSS3 e Javascript seguindo os conteúdos ministrados até aqui.
- O checkpoint pode ser realizado em grupos de até 3 membros.</p>
+<p align="justify">&emsp;Esta atividade tem como objetivo servir como segundo instrumento avaliativo da disciplina. O entregável será uma To Do App em HTML, CSS e JavaScript, seguindo os conteúdos ministrados até aqui. O checkpoint pode ser realizado em grupos de até 5 membros. Atente-se às instruções e boa avaliação. </p>
 
 ---
 
 <div align="start">
-<h2>🔧 Requisitos do projeto:</h2>
+<h2>🔧 Detalhes do projeto:</h2>
 
-  <ol>
-    <li>O tema da aplicação é de sua preferência. Pode ser sobre carros, animes, cidades, etc.</li>
-    <li>A aplicação deve ser responsiva.</li>
-    <li>A aplicação consiste em um formulário que, ao ser preenchido, cria cards com as informações preenchidas.</li>
-    <li> Sobre o formulário: </li>
-     <ul>
-     <li>O formulário deve ter pelo menos 4 campos: Título, Descrição e URL da imagem e um botão de submit.</li>
-     <li>Após o preenchimento, ao clicar no botão de submit, as informações devem ser adicionadas à lista de cards na página</li> 
-     <li>Dica: Você pode acrescentar outros campos ao formulário para deixar a aplicação mais completa.</li>
-     </ul>
-    <li>Sobre os Cards:</li>
-    <ul>
-      <li>Os cards devem ter uma imagem e constar todas as informações previamente preenchidas no formulário. </li>
-      <li>O comportamento se dará de forma que as informações preenchidas sejam exibidas na seção de cards.</li>
-    </ul>
-  </ol>
+<p align="center"><img height="250em" src="https://i.postimg.cc/sxj7yRY1/estrutura-To-Do-App.jpg" /></p>
+
+  <ul>
+    <li>assets: aqui vamos encontrar os recursos gráficos que vamos implementar em nossa interface.</li>
+    <li>scripts: este diretório armazena toda a lógica do nosso projeto, é onde residem todos os scripts correspondentes ao comportamento das páginas às quais estão associados.</li>
+    <li>styles: sem muito a esclarecer, todos os estilos de nossa interface são separados de acordo com sua aplicação em todo ou partes específicas do projeto.</li>
+    <li>index.html: aqui definimos nosso "entry point", nosso ponto de partida. Como sabemos, os servidores de forma padrão interpretam o index como a página principal do nosso site. Neste caso definimos o que seria o "login" como nossa página principal, aquela que queremos que seja renderizada quando um usuário acessar pela primeira vez.</li>
+    <li>tarefas.html: esta é a nossa página dedicada à vista privada de cada usuário que tem um perfil e começa a gerar tarefas na aplicação.</li>
+    <li>signup.html: Como o próprio nome em inglês indica, esta é a nossa página de registro para aqueles usuários que desejam criar um perfil pela primeira vez e assim acessar nosso serviço.</li>
+  </ul>
   </div>
-
+  
+<p align="justify">&emsp;Em linhas gerais, essa é a estrutura definida para este projeto, para este caso específico. É importante entender isso, pois nem sempre essa arquitetura será repetida em todos os projetos de front-end, mas podemos dizer que tentamos seguir boas práticas, como os bons desenvolvedores que queremos ser.</p>
 
 
 ---  
@@ -36,9 +30,9 @@
 
 <h3 align="center">Imagens de amostra do projeto finalizado</h2>
 
-Acesse o prototipo do projeto através do link :
+Acesse o protótipo do projeto por meio deste link abaixo:
     
-https://digital-house-checkpoint1-front-end2.vercel.app/
+Espaço destinado ao link do projeto no Vercel
 
 
 
