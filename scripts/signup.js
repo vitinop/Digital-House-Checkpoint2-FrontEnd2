@@ -155,7 +155,6 @@ form.addEventListener("submit", (event) => {
         }),
       })
         .then((res) => {
-          console.log(res);
           if (!res.ok) {
             throw Error(res.statusText);
           } else {
@@ -164,15 +163,13 @@ form.addEventListener("submit", (event) => {
               creationStatus.innerText = mensagemError;
               creationStatus.classList.remove("user_falha");
               creationStatus.classList.add("user_sucesso");
-              
             setTimeout(() => {
               window.location.href = "tarefas.html";
-            },3000);
+            },1000);
           }
         })
 
         .catch((data) => {
-          console.log(data);
           if (data == "Error: Bad Request") {
             mensagemError.push("Usuário já existe!");
             creationStatus.innerText = mensagemError;

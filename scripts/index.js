@@ -63,7 +63,7 @@ form.addEventListener("submit", (event) => {
             event.preventDefault();
         }
     }
-console.log('test')
+
     function fetchAPI() {
         let loginError = [];
 
@@ -80,7 +80,6 @@ console.log('test')
             }),
         })
             .then((res) => {
-                console.log(res)
                 if (res.status == 201) { 
                     res.json().then(data => {
                         if (data.jwt != undefined) {
@@ -131,26 +130,3 @@ console.log('test')
     }
     fetchAPI();
 })
-
-
-
-
-
-// ).catch((data) => {
-
-//     if (data == 'Error: Bad Request') {
-//         confirmLogin.innerHTML = '<h1>Senha ou email incorretos</h1>'
-//         confirmLogin.style.opacity = '1'
-//         confirmLogin.style.backgroundColor = 'red'
-
-//     }
-
-//     if (data == 'Error: Not Found') {
-//         confirmLogin.innerHTML = '<h1>Usuário não existe</h1>'
-//         confirmLogin.style.opacity = '1'
-//         confirmLogin.style.backgroundColor = 'red'
-
-//     }
-   
-   
-// })
