@@ -4,13 +4,11 @@ const btnSair = document.querySelector("#closeApp");
 let tarefasPendentes = document.querySelector("#tarefasPendentes");
 let time = new Date().toLocaleString();
 
-
-
 let trash;
 let pen;
 let check;
 
-// ____________________ Criação de Tarefa ____________________
+// _______ Criação de Tarefa _______
 btnCriar.addEventListener("click", e => {
     e.preventDefault();
     postTasks();
@@ -36,13 +34,13 @@ let gerarListaTarefas = (params) => {
     </li>`;
 };
 
-// __________________ codigos API ____________________
+// ______ codigos API ________
 const getTasksAll = () => {
     let getToken = JSON.parse(localStorage.getItem("Token"));
     fetch("https://ctd-todo-api.herokuapp.com/v1/tasks",{
         method: 'GET',
         headers:{
-            'Accept': '*/* , application/json',
+            'Accept': '/ , application/json',
             'Content-Type': 'application/json',
             'authorization': `${getToken}`
         },
@@ -60,10 +58,11 @@ const getTasksAll = () => {
                         delTasks(data[i].id);
                     });
                 });
-                pen = document.querySelectorAll("#editar");
+                // adicionar funcionalidade ao botão editar e conclusao da tarefa
+                pen = document.querySelectorAll("#editar"); 
                 pen.forEach((ele, i) => {
                     ele.addEventListener("click", () => {
-                        putTasks(data[i].id);
+                        editTasks(data[i].id);
                     });
                 });
                 check = document.querySelectorAll("#btnFeito");
@@ -89,7 +88,7 @@ const getTasksOne = () => {
     fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${getIdTasks}`,{
         method: 'GET',
         headers:{
-            'Accept': '*/* , application/json',
+            'Accept': '/ , application/json',
             'Content-Type': 'application/json',
             'authorization': `${getToken}`
         }
@@ -108,7 +107,7 @@ const postTasks = () => {
     fetch("https://ctd-todo-api.herokuapp.com/v1/tasks",{
         method: 'POST',
         headers:{
-            'Accept': '*/* , application/json',
+            'Accept': '/ , application/json',
             'Content-Type': 'application/json',
             'authorization': `${getToken}`
         },
@@ -130,7 +129,7 @@ const delTasks = (params) => {
     fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${params}`,{
         method: 'DELETE',
         headers:{
-            'Accept': '*/* , application/json',
+            'Accept': '/ , application/json',
             'Content-Type': 'application/json',
             'authorization': `${getToken}`
         }
@@ -143,12 +142,12 @@ const delTasks = (params) => {
     });
 };
 
-const putTasks = params => {
+const editTasks = params => {
     let getToken = JSON.parse(localStorage.getItem("Token"));
     fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${params}`,{
         method: 'PUT',
         headers:{
-            'Accept': '*/* , application/json',
+            'Accept': '/ , application/json',
             'Content-Type': 'application/json',
             'authorization': `${getToken}`
         },
