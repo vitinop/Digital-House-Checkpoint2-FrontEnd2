@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <base href="../">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List - My Task</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <article>
+        <h1>My Tasks</h1>
+
+        <div>
+            <label for="inputTask">Tarefa</label>
+            <input
+                id="inputTask"
+                user="task"
+                placeholder="Adicione sua tarefa aqui..."
+            />
+            <button 
+                class="btn"
+                onclick="AddTask()"
+            >
+                +
+            </button>
+        </div>
+        <ul class="list" id="elementListTask">
+            <li class="list__item">Você não tem nenhuma tarefa :(</li>
+        </ul>
+    </article>
+
+    <script 
+        type="text/javascript" 
+        src="./task.js">
+    </script>
+</body>
+</html>
