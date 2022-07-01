@@ -60,7 +60,7 @@
         }
 
         fetch(`TASK_URL/${idTask}`, deleteConfig)
-        .then(response => DeleteTaskElement());
+        .then(_ => DeleteTaskElement());
 
         function DeleteTaskElement() {
             let currentElementTask = document.querySelector(`#item-${id}`);
